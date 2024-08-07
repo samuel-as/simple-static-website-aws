@@ -1,5 +1,5 @@
-data "aws_route53_zone" "example_com" {
-  name         = "example.com"
+data "aws_route53_zone" "cepespdata_io" {
+  name         = "cepespdata.io"
   private_zone = false
 }
 
@@ -29,5 +29,5 @@ resource "aws_route53_record" "certificate_validation" {
   records  = [each.value.record]
   ttl      = 60
   type     = each.value.type
-  zone_id = data.aws_route53_zone.example_com.zone_id  
+  zone_id = data.aws_route53_zone.cepespdata_io.zone_id  
 }
