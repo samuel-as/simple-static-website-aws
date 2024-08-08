@@ -1,22 +1,16 @@
-# Nome do Projeto
+# Simple Static Website On AWS
+This project uses Terraform to provision an infrastructure on AWS that hosts a static website, including the creation of an S3 bucket for file storage, the configuration of a CloudFront distribution for fast and secure content delivery, and the generation of an SSL certificate via AWS Certificate Manager (ACM) to ensure secure connections, the creation of DNS records on Route 53 for validation of ACM certificates and publication of the website URL on the internet.
 
-Breve descrição do projeto e seu propósito.
+## Table of Contents
 
-## Índice
+- [Technologies Used](#technologies-used)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
 
-- [Descrição](#descrição)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Pré-requisitos](#pré-requisitos)
-- [Instalação](#instalação)
-- [Uso](#uso)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
 
-## Descrição
-
-Este repositório contém a infraestrutura como código (IaC) para hospedar um site estático na AWS utilizando Terraform. A configuração inclui um bucket S3, uma distribuição CloudFront, um certificado SSL gerado pelo AWS Certificate Manager (ACM) e a configuração do Route 53 para gerenciamento de DNS.
-
-## Tecnologias Utilizadas
+## Technologies Used
 
 - [Terraform](https://www.terraform.io/)
 - [AWS](https://aws.amazon.com/)
@@ -25,32 +19,43 @@ Este repositório contém a infraestrutura como código (IaC) para hospedar um s
 - [ACM](https://aws.amazon.com/certificate-manager/)
 - [Route 53](https://aws.amazon.com/route53/)
 
-## Pré-requisitos
+## Prerequisites
 
-Antes de começar, você precisará ter as seguintes ferramentas instaladas:
+Before you begin, you will need to have the following tools installed:
 
 - [Terraform](https://www.terraform.io/downloads.html)
 - [AWS CLI](https://aws.amazon.com/cli/)
-- Conta na AWS com permissões adequadas para criar os recursos.
+- An AWS account with appropriate permissions to create resources.
+- A pre-configured domain on Route 53
 
-## Instalação
+## Installation
 
-1. Clone este repositório:
+1. Clone this repository:
    ```bash
-   git clone https://github.com/seuusuario/seurepositorio.git
-   cd seurepositorio
-2. Configure suas credenciais da AWS usando o AWS CLI:
+   git clone https://github.com/samuel-as/simple-static-website-aws.git
+   cd simple-static-website-aws
+2. Configure your AWS credentials using the AWS CLI:
      ```bash
      aws configure
-3. Inicialize o Terraform:
+3. Fill terraform.tfvars file
+    ```bash
+    bucket_name   = ""
+    domain_name    = ""
+    hosted_zone_id = ""
+    subject_alternative_names = [""]
+    cdn_aliases = ""
+4. Initialize Terraform:
     ```bash
     terraform init
-4. Valide o plano de execução:
+5. Validate the execution plan:
+    ```bash
+    terraform plan
+6. Apply the configuration:
+    ```bash
+    terraform apply
+## Usage
+After successfully applying the changes, upload your static website files to the bucket (bucket_name). 
+You can access your static website through the URL configured in the 'domain_name' variable.
 
-5. Aplique a configuração:
-
-## Uso
-Após a aplicação bem-sucedida, você pode acessar seu site estático através da URL fornecida pela distribuição CloudFront. Verifique os outputs do Terraform para obter a URL.
-
-## Licença
-Este projeto está licenciado sob a MIT License - veja o arquivo LICENSE para mais detalhes.
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
