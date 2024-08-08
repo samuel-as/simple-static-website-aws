@@ -18,3 +18,8 @@ variable "subject_alternative_names" {
     type        = list(string)
     default     = []
 }
+
+variable "cdn_aliases" {
+    description = "Lista de nomes alternativos para o CDN"
+    type        = string
+}
