@@ -4,7 +4,7 @@ resource "aws_acm_certificate" "certificate" {
   validation_method = "DNS"
 
   tags = {
-    Name = "Meu Certificado SSL"
+    Name = "My SSL Certificate"
   }
 }
 

@@ -8,10 +8,10 @@ resource "aws_cloudfront_distribution" "cdn" {
 
   enabled         = true
   is_ipv6_enabled = true
-  comment         = "Some comment"
+  comment         = "Static Site Distribution"
   default_root_object = "index.html"
 
-  aliases = ["${var.domain_name}"]
+  aliases = ["${var.domain_name}","${var.cdn_aliases}"]
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
